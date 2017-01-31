@@ -10,7 +10,7 @@ public class Address {
 
     public static final String EXAMPLE = "123, some street, #01-01, 123456";
     public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses must be a/BLOCK, STREET, UNIT, POSTAL_CODE";
-    public static final String ADDRESS_VALIDATION_REGEX = "\\S+, \\S+, \\S+, \\S+";
+    public static final String ADDRESS_VALIDATION_REGEX = ".+";
     private static final int BLOCK_INDEX = 0;
     private static final int STREET_INDEX = 1;
     private static final int UNIT_INDEX = 2;

@@ -22,13 +22,14 @@ public class AddressBook {
 
     private final UniquePersonList allPersons;
     private final UniqueTagList allTags; // can contain tags not attached to any person
-
+    private final Tagging tagging;
     /**
      * Creates an empty address book.
      */
     public AddressBook() {
         allPersons = new UniquePersonList();
         allTags = new UniqueTagList();
+        tagging = new Tagging();
     }
 
     /**
@@ -41,6 +42,7 @@ public class AddressBook {
     public AddressBook(UniquePersonList persons, UniqueTagList tags) {
         this.allPersons = new UniquePersonList(persons);
         this.allTags = new UniqueTagList(tags);
+        tagging = new Tagging();
         for (Person p : allPersons) {
             syncTagsWithMasterList(p);
         }

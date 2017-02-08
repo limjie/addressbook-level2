@@ -77,6 +77,9 @@ public class Name {
         if (this.isSubSetOfNameInLowercase(other)) {
             return true;
         }
+        if (other.isSubSetOfNameInLowercase(this)) {
+            return true;
+        }
         return false;
     }
 
@@ -90,6 +93,11 @@ public class Name {
         List<String> nameSet = Arrays.asList(this.toString().toLowerCase().split(" "));
         String[] otherNameSet = other.toString().split(" ");
         for (String word : otherNameSet) {
+            if (word.startsWith(",")) {
+                word = word.replaceFirst(",", "");
+            } else if (word.endsWith(",")) {
+                word = word.substring(0, word.length() - 1);
+            }
             if (!nameSet.contains(word.toLowerCase())) {
                 return false;
             }

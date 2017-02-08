@@ -70,6 +70,9 @@ public class Name {
          if (other == null) {
              return false;
          }
+         if (!this.equals(other)) {
+             return false;
+         }
          return true;
      }
 

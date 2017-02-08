@@ -11,13 +11,27 @@ public class NameTest {
 
     @Test
     public void testIsSimilar() {
-        Name Testname = null;
+        Name testName = null;
+        Name otherName = null;
+        Name wrongName = null;
         try {
-            Testname = new Name("Lim Jie");
+            testName = new Name("Lim Jie");
+            otherName = new Name("Lim Jie");
+            wrongName = new Name("Peter");
         } catch (IllegalValueException ive) {
             throw new RuntimeException("test name should be valid by definition");
         }
-        assertFalse(Testname.isSimilar(null));
+        
+        //null test
+        assertFalse(testName.isSimilar(null));
+        assertFalse(testName.isSimilar((Name) null));
+        
+        // check if similar to oneself
+        assertTrue(testName.isSimilar(testName));
+        assertTrue(testName.isSimilar(otherName));
+        
+        //check if similar to other names
+        assertFalse(testName.isSimilar(wrongName));
     }
 
 }

@@ -3,6 +3,7 @@ package seedu.addressbook.data.person;
 import seedu.addressbook.data.exception.IllegalValueException;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -63,29 +64,36 @@ public class Name {
     }
 
     /**
-     * Returns true of the other name is very similar to this name.
-     * Two names are considered similar if ...
+     * Returns true of the other name is very similar to this name. Two names
+     * are considered similar if ...
      */
-     public boolean isSimilar(Name other) {
-         if (other == null) {
-             return false;
-         }
-         if (this.equals(other)) {
-             return true;
-         }
-         if(this.hasSameNameInLowercase(other)) {
-             return true;
-         }
-         return false;
-     }
-
-    private boolean hasSameNameInLowercase(Name other) {
-        String lowerCaseName = this.toString().toLowerCase();
-        String lowerCaseOtherName = other.toString().toLowerCase();
-        if (lowerCaseName.equals(lowerCaseOtherName)) {
+    public boolean isSimilar(Name other) {
+        if (other == null) {
+            return false;
+        }
+        if (this.equals(other)) {
+            return true;
+        }
+        if (this.isSubSetOfNameInLowercase(other)) {
             return true;
         }
         return false;
     }
 
+    /**
+     * 
+     * @param other
+     *            the other name to be tested
+     * @return true if the other name is a subset of the original name
+     */
+    private boolean isSubSetOfNameInLowercase(Name other) {
+        List<String> nameSet = Arrays.asList(this.toString().toLowerCase().split(" "));
+        String[] otherNameSet = other.toString().split(" ");
+        for (String word : otherNameSet) {
+            if (!nameSet.contains(word.toLowerCase())) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

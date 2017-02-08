@@ -15,11 +15,17 @@ public class NameTest {
         Name otherName = null;
         Name wrongName = null;
         Name differentCaseName = null;
+        Name subSetName = null;
+        Name subSetNameDifferentCase = null;
+        Name differentOrderName = null;
         try {
             testName = new Name("Lim Jie");
             otherName = new Name("Lim Jie");
             wrongName = new Name("Peter");
             differentCaseName = new Name("LIM JIE");
+            subSetName = new Name("Lim");
+            subSetNameDifferentCase = new Name("LIM");
+            differentOrderName = new Name("Jie Lim");
         } catch (IllegalValueException ive) {
             throw new RuntimeException("test name should be valid by definition");
         }
@@ -37,6 +43,13 @@ public class NameTest {
         
         //check if similar to different case name
         assertTrue(testName.isSimilar(differentCaseName));
+        
+        //check if similar to a subset of name
+        assertTrue(testName.isSimilar(subSetName));
+        assertTrue(testName.isSimilar(subSetNameDifferentCase));
+        
+        //check if the name is in different order
+        assertTrue(testName.isSimilar(differentOrderName));
     }
 
 }

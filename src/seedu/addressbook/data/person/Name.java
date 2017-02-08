@@ -70,10 +70,22 @@ public class Name {
          if (other == null) {
              return false;
          }
-         if (!this.equals(other)) {
-             return false;
+         if (this.equals(other)) {
+             return true;
          }
-         return true;
+         if(this.hasSameNameInLowercase(other)) {
+             return true;
+         }
+         return false;
      }
+
+    private boolean hasSameNameInLowercase(Name other) {
+        String lowerCaseName = this.toString().toLowerCase();
+        String lowerCaseOtherName = other.toString().toLowerCase();
+        if (lowerCaseName.equals(lowerCaseOtherName)) {
+            return true;
+        }
+        return false;
+    }
 
 }

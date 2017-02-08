@@ -14,10 +14,12 @@ public class NameTest {
         Name testName = null;
         Name otherName = null;
         Name wrongName = null;
+        Name differentCaseName = null;
         try {
             testName = new Name("Lim Jie");
             otherName = new Name("Lim Jie");
             wrongName = new Name("Peter");
+            differentCaseName = new Name("LIM JIE");
         } catch (IllegalValueException ive) {
             throw new RuntimeException("test name should be valid by definition");
         }
@@ -32,6 +34,9 @@ public class NameTest {
         
         //check if similar to other names
         assertFalse(testName.isSimilar(wrongName));
+        
+        //check if similar to different case name
+        assertTrue(testName.isSimilar(differentCaseName));
     }
 
 }
